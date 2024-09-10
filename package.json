@@ -1,8 +1,8 @@
 {
-  "name": "react-keycloak-provider",
-  "version": "0.1.0",
+  "name": "react-custom-lib",
+  "version": "0.0.1",
   "private": false,
-  "repository": "ssh+git@github.com:kantorv/react-keycloak-provider.git",
+  "repository": "ssh+git@github.com:kantorv/react-custom-lib.git",
   "author": "Valentin Kantor",
   "license": "MIT",
   "main": "./build/index.js",
@@ -13,8 +13,8 @@
   ],
   "keywords": [
     "react",
-    "keycloak",
-    "oidc"
+    "typescript",
+    "rollup"
   ],
   "scripts": {
     "build": "rollup -c",
