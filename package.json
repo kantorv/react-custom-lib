@@ -1,8 +1,29 @@
 {
   "name": "react-keycloak-provider",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
+  "repository": "https://github.com/kantorv/react-keycloak-provider",
+  "author": "Valentin Kantor",
+  "license": "MIT",
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "react",
+    "keycloak",
+    "oidc"
+  ],
+  "scripts": {
+    "build": "rollup -c",
+    "test": "react-scripts test",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build",
+    "release": "release-it"
+  },
   "dependencies": {
+    "keycloak-js": "^25.0.5"
+  },
+  "devDependencies": {
     "@testing-library/jest-dom": "^6.5.0",
     "@testing-library/react": "^13.0.0",
     "@testing-library/user-event": "^14.5.2",
@@ -16,11 +37,9 @@
     "typescript": "^5.6.2",
     "web-vitals": "^4.2.3"
   },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+  "peerDependencies": {
+    "react": ">=18",
+    "react-dom": ">=18"
   },
   "eslintConfig": {
     "extends": [
@@ -40,4 +59,5 @@
       "last 1 safari version"
     ]
   }
+
 }
