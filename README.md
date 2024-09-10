@@ -1,36 +1,53 @@
 # React Standalone Component Boilerplate
 
-A boilerplate for developing standalone React components with Storybook and publishing them to npm. This setup supports TypeScript and Material-UI (v5 and v6) out of the box.
+A boilerplate for developing standalone React components with Storybook and publishing them to npm.
 
 ## Features
 
-- **ESM and CJS builds**: Export in modern JavaScript module formats (`esm`, `cjs`), with optional `.d.ts` TypeScript definitions.
-- **Storybook**: For isolated component development and testing.
-- **Rollup**: Used for building components.
-- **TypeScript support**: Pre-configured for seamless integration.
+- **Rollup**: Build  `esm` and/or`cjs` formats, with optional `.d.ts`.
+- **Release-it**: release-it integration for github releases, and npmjs publishing
+- **Storybook**: For component development, testing, and presentation.
+- **SDLC**: github actions ( with release-it), gitflow support, usage of PR labels (for setting semver release type) allow to implement different sdlc flows and releases logic.
 
-<!-- FIXME: add one more feature  - MUI5/6 compatible, and some where section for MUI specific steps -->
+
+## Out the box support:
+- **TypeScript**: Pre-configured for seamless integration.
+- **Material-UI**: Compatible with MUI v5/v6.
 
 ## Getting Started
 
-### Prerequisites
 
-Ensure you have the following tools installed:
+### Prequirements
+1. **NPM publish token**
 
-- Node.js >= 18.x
-- Yarn >= 1.x
+    - Go to [npmjs.com](https://npmjs.com), log in, and navigate to `Access Tokens`.
+    - Create a new token of type `Classic`, and choose the `Automation` option.
+
+    - Install token to `~/.npmrc`:
+        ```bash
+        $ npm config set //registry.npmjs.org/:_authToken $NPM_PUBLISH_TOKEN
+        ```
 
 ### Installation
 
+To create a new project from this template:
 
-<!-- FIXME: this is template repo, fix installations instructions according to -->
-Clone the repository and install dependencies: 
+1. Click on the `Use this template` button in GitHub.
+2. Clone the newly created repository:
+    ```bash
+    git clone git@github.com:yourusername/react-external-lib.git my-cistom-lib
+    cd my-custom-lib
+    yarn install
+    yarn storybook
+    yarn build
+    yarn release # make sure you have a valid NPM_PUBLISH_TOKEN
+    
+    # ci env simulate
+    # yarn release --ci  --increment=minor
+    ```
 
-```bash
-git clone git@github.com:kantorv/react-external-lib.git
-cd react-external-lib-boilerplate
-yarn install
-```
+
+
 
 ### Available Scripts
 
@@ -55,15 +72,20 @@ Builds the component library using Rollup, outputting both `esm` and `cjs` forma
 
 #### `yarn release`
 
-Prepares and publishes a new version to npm. 
+Prepares and publishes a new version to npm.
 
-> **Note:** Ensure that you have configured your `NPM_PUBLISH_TOKEN` in your repository secrets before running this command.
+> **Note:** Ensure that you have configured your `NPM_PUBLISH_TOKEN` in your repository secrets before running this command in github action.
 
 ### Configuration
 
 #### TypeScript (`tsconfig.json`)
 
-This project includes a customized `tsconfig.json` file optimized for generating `.d.ts` declaration files.
+The provided `tsconfig.json` contains several options related to generated `.d.ts` - required by `rollup-plugin-dts`
+- `"declaration": true`
+- `"declarationDir": "build/dts"`
+- `"emitDeclarationOnly": true`
+
+
 
 ### Publishing to npm
 
@@ -82,12 +104,14 @@ To publish your component library, follow these steps:
 3. **GitHub Actions setup**:
     Add the `NPM_PUBLISH_TOKEN` as a secret in your GitHub repository if you want to automate releases via GitHub Actions.
 
+
 ## Known Issues
 
 - Release-it
     - **NPM Classic Token bypasses 2FA**: The token used for automated publishing bypasses two-factor authentication.
     - **GitHub Actions fail on protected branches**: If `git.commit === true` in the `release-it` configuration, the `release.yml` action will fail on protected branches. 
-    To resolve this, disable branch protection for the `default` branch. TODO: refactor flow without to `default`  branch
+    To resolve this, disable branch protection for the `default` branch. 
+     TODO: refactor flow without commiting to `default`  branch
 
 ## Inspiration
 
@@ -102,5 +126,5 @@ This project was inspired by:
 
 ## Credits
 - [Create React App](https://github.com/facebook/create-react-app)
-- [StoryBook](https://storybook.js.org/)development and testing
+- [StoryBook](https://storybook.js.org/)
 - [Rollup](https://rollupjs.org/) 
