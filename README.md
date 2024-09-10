@@ -1,46 +1,106 @@
-# Getting Started with Create React App
+# React Standalone Component Boilerplate
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A boilerplate for developing standalone React components with Storybook and publishing them to npm. This setup supports TypeScript and Material-UI (v5 and v6) out of the box.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- **ESM and CJS builds**: Export in modern JavaScript module formats (`esm`, `cjs`), with optional `.d.ts` TypeScript definitions.
+- **Storybook**: For isolated component development and testing.
+- **Rollup**: Used for building components.
+- **TypeScript support**: Pre-configured for seamless integration.
 
-### `yarn start`
+<!-- FIXME: add one more feature  - MUI5/6 compatible, and some where section for MUI specific steps -->
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Getting Started
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### Prerequisites
 
-### `yarn test`
+Ensure you have the following tools installed:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Node.js >= 18.x
+- Yarn >= 1.x
 
-### `yarn build`
+### Installation
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+<!-- FIXME: this is template repo, fix installations instructions according to -->
+Clone the repository and install dependencies: 
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```bash
+git clone git@github.com:kantorv/react-external-lib.git
+cd react-external-lib-boilerplate
+yarn install
+```
 
-### `yarn eject`
+### Available Scripts
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Here are the main scripts you can use:
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+#### `yarn storybook`
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Launches Storybook for developing and testing your components in isolation.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+> **Note:** To deploy Storybook to GitHub Pages, make sure your repository settings are properly configured:
+>
+> 1. Go to `Settings` -> `Actions` -> `General` -> `Workflow permissions`, and enable `Read and write permissions`.
+> 2. Go to `Settings` -> `Pages` -> `Build and deployment`, and set the `Source` to `GitHub Actions`.
 
-## Learn More
+#### `yarn test`
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Runs the test suite using `react-scripts`.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+#### `yarn build`
+
+Builds the component library using Rollup, outputting both `esm` and `cjs` formats.
+
+#### `yarn release`
+
+Prepares and publishes a new version to npm. 
+
+> **Note:** Ensure that you have configured your `NPM_PUBLISH_TOKEN` in your repository secrets before running this command.
+
+### Configuration
+
+#### TypeScript (`tsconfig.json`)
+
+This project includes a customized `tsconfig.json` file optimized for generating `.d.ts` declaration files.
+
+### Publishing to npm
+
+To publish your component library, follow these steps:
+
+1. **Generate an npm token**:
+    - Go to [npmjs.com](https://npmjs.com), log in, and navigate to `Access Tokens`.
+    - Create a new token of type `Classic`, and choose the `Automation` option.
+
+2. **Test locally**:
+    ```bash
+    npm config set //registry.npmjs.org/:_authToken $NPM_PUBLISH_TOKEN
+    npm publish
+    ```
+
+3. **GitHub Actions setup**:
+    Add the `NPM_PUBLISH_TOKEN` as a secret in your GitHub repository if you want to automate releases via GitHub Actions.
+
+## Known Issues
+
+- Release-it
+    - **NPM Classic Token bypasses 2FA**: The token used for automated publishing bypasses two-factor authentication.
+    - **GitHub Actions fail on protected branches**: If `git.commit === true` in the `release-it` configuration, the `release.yml` action will fail on protected branches. 
+    To resolve this, disable branch protection for the `default` branch. TODO: refactor flow without to `default`  branch
+
+## Inspiration
+
+This project was inspired by:
+
+- [TypeScript React Package Starter](https://github.com/TimMikeladze/typescript-react-package-starter)
+
+## References
+- [TypeScript library tips: Rollup your types!](https://medium.com/@martin_hotell/typescript-library-tips-rollup-your-types-995153cc81c7)
+- [Creating a React Component Library with TypeScript, Storybook & Rollup](https://blog.cristiana.tech/creating-a-react-component-library-with-typescript-storybook-and-rollup)
+- [How to Create a React Multi-package UI Library](https://medium.com/@maayan_37411/how-to-create-a-react-multi-package-ui-library-2ba6ae0909b6)
+
+## Credits
+- [Create React App](https://github.com/facebook/create-react-app)
+- [StoryBook](https://storybook.js.org/)development and testing
+- [Rollup](https://rollupjs.org/) 

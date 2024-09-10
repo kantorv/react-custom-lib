@@ -2,7 +2,7 @@
   "name": "react-external-lib-boilerplate",
   "version": "0.0.2",
   "private": false,
-  "repository": "ssh+git@github.com:kantorv/react-custom-lib.git",
+  "repository": "ssh+git@github.com:kantorv/react-external-lib.git",
   "author": "Valentin Kantor",
   "license": "MIT",
   "main": "./build/index.js",
