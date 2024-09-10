@@ -7,7 +7,7 @@ A boilerplate for developing standalone React components with Storybook and publ
 - **Rollup**: Build  `esm` and/or`cjs` formats, with optional `.d.ts`.
 - **Release-it**: release-it integration for github releases, and npmjs publishing
 - **Storybook**: For component development, testing, and presentation.
-- **SDLC**: github actions ( with release-it), gitflow support, usage of PR labels (for setting semver release type) allow to implement different sdlc flows and releases logic.
+- **SDLC**: github actions ( with release-it), gitflow support, usage of PR labels (for setting semver release type) allow to implement different sdlc flows and release logic.
 
 
 ## Out the box support:
