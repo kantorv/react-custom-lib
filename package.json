@@ -24,10 +24,15 @@
     "build-storybook": "storybook build"
   },
   "dependencies": {
-    "keycloak-js": "^25.0.5"
+    "keycloak-js": "^25.0.5",
+    "release-it": "^17.6.0"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^1.9.0",
+    "@rollup/plugin-commonjs": "^26.0.1",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-typescript": "^11.1.6",
+    "@rollup/plugin-url": "^8.0.2",
     "@storybook/addon-essentials": "^8.2.9",
     "@storybook/addon-interactions": "^8.2.9",
     "@storybook/addon-links": "^8.2.9",
@@ -48,16 +53,12 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-scripts": "5.0.1",
-    "storybook": "^8.2.9",
-    "typescript": "^5.6.2",
-    "web-vitals": "^4.2.3",
-    "@rollup/plugin-commonjs": "^26.0.1",
-    "@rollup/plugin-node-resolve": "^15.2.3",
-    "@rollup/plugin-typescript": "^11.1.6",
-    "@rollup/plugin-url": "^8.0.2",
     "rollup-plugin-dts": "^6.1.1",
     "rollup-plugin-peer-deps-external": "^2.2.4",
-    "rollup-plugin-postcss": "^4.0.2"
+    "rollup-plugin-postcss": "^4.0.2",
+    "storybook": "^8.2.9",
+    "typescript": "^5.6.2",
+    "web-vitals": "^4.2.3"
   },
   "peerDependencies": {
     "react": ">=18",
@@ -84,5 +85,23 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "release-it": {
+    "git": {
+      "commit": true,
+      "tag": true,
+      "push": true
+    },
+    "github": {
+      "release": true,
+      "releaseName": "Release ${version}",
+      "autoGenerate": true,
+      "preRelease": false,
+      "draft": false
+    },
+    "npm": {
+      "skipChecks": true,
+      "publish": true
+    }
   }
 }
