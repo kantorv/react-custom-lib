@@ -1,5 +1,5 @@
 {
-  "name": "react-custom-lib",
+  "name": "react-external-lib-boilerplate",
   "version": "0.0.1",
   "private": false,
   "repository": "ssh+git@github.com:kantorv/react-custom-lib.git",
