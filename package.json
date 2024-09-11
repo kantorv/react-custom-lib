@@ -24,7 +24,6 @@
     "build-storybook": "storybook build"
   },
   "dependencies": {
-    "keycloak-js": "^25.0.5",
     "release-it": "^17.6.0"
   },
   "devDependencies": {
