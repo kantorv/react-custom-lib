@@ -8,13 +8,17 @@ A boilerplate for developing standalone React components with Storybook and publ
 - **Release-it**: release-it integration for github releases, and npmjs publishing
 - **Storybook**: For component development, testing, and presentation.
 - **SDLC**: 
-    - 
-    - github actions ( with `release-it`), 
-    - `gitflow` support:
-        - push `feature/*`, `hotfix/*`
-    - settings release type with PR labels: `patch`,`minor`,`major`
-    - TODO: support prereleases 
+    - `gitflow`:
+        - Push to `feature/*`, `hotfix/*`
+        - Make PR to `default`
+        - Set PR label: `patch`,`minor`,`major`
+        - When `merged`:
+            - new `tag` created
+            - new `github release`  created
+            - new build pushed to `npmjs`
+            
 
+        - TODO: support dev/rc tags
 
 ## Out the box support:
 - **TypeScript**: Pre-configured for seamless integration.
