@@ -45,8 +45,8 @@ To create a new project from this template:
 1. Click on the `Use this template` button in GitHub.
 2. Clone the newly created repository:
     ```bash
-    git clone git@github.com:yourusername/react-external-lib.git my-cistom-lib
-    cd my-custom-lib
+    git clone git@github.com:yourusername/your-custom-lib.git
+    cd your-custom-lib
     yarn install
     yarn storybook
     yarn build
