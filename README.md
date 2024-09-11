@@ -7,36 +7,50 @@ A boilerplate for developing standalone React components with Storybook and publ
 - **Rollup**: Build  `esm` and/or`cjs` formats, with optional `.d.ts`.
 - **Release-it**: release-it integration for github releases, and npmjs publishing
 - **Storybook**: For component development, testing, and presentation.
-- **SDLC**: 
-    - `gitflow`:
-        - Push to `feature/*`, `hotfix/*`
-        - Make PR to `default`
-        - Set PR label: `patch`,`minor`,`major`
-        - When `merged`:
-            - new `tag` created
-            - new `github release`  created
-            - new build pushed to `npmjs`
-            
 
-        - TODO: support dev/rc tags
 
 ## Out the box support:
 - **TypeScript**: Pre-configured for seamless integration.
 - **Material-UI**: Compatible with MUI v5/v6.
+- **SDLC**: 
 
 ## Getting Started
 
 
 ### Prequirements
-1. **NPM publish token**
+-  **NPM publish token**
+    
+    Follow these steps if you're planning to push to npmjs/other registry 
+    - **Generate an npm token**:
+        - Go to [npmjs.com](https://npmjs.com), log in, and navigate to `Access Tokens`.
+        - Create a new token of type `Classic`, and choose the `Automation` option.
 
-    - Go to [npmjs.com](https://npmjs.com), log in, and navigate to `Access Tokens`.
-    - Create a new token of type `Classic`, and choose the `Automation` option.
-
-    - Install token to `~/.npmrc`:
+    - **Test locally (⚠️ will override ~/.npmrc ⚠️)**:
         ```bash
+        # make a backup before testing ci token in local env
+        
+        # backing up
+        # $ cp ~/.npmrc ~/.npmrc.bak
+
         $ npm config set //registry.npmjs.org/:_authToken $NPM_PUBLISH_TOKEN
+        $ npm publish
+        
+        # restoring
+        # $ mv ~/.npmrc.bak ~/.npmrc
         ```
+
+    - **GitHub Actions setup**:
+
+        Add the `NPM_PUBLISH_TOKEN` as a secret in your GitHub repository/organization if you want to push releases via GitHub Actions.
+
+
+-  **Storybook deploying to Github Pages**
+    1. Go to `Repository Settings` -> `Actions` -> `General` -> `Workflow permissions`, enable `Read and write permissions` and  `Save`.
+
+    2. Go to `Repository Settings` -> `Pages` -> `Build and deployment`, and set the `Source` to `GitHub Actions`.
+
+-  **PR Labels**
+    
 
 ### Installation
 
@@ -53,10 +67,23 @@ To create a new project from this template:
     yarn release # make sure you have a valid NPM_PUBLISH_TOKEN
     
     # ci env simulate
-    # yarn release --ci  --increment=minor
+    # yarn release --ci  --increment=patch
     ```
 
+### Development
 
+- **SDLC**: 
+    - `gitflow`:
+        - Push to `feature/*`, `hotfix/*`
+        - Make PR to `default`
+        - Set PR label: `patch`,`minor`,`major`
+        - When `merged`:
+            - new `tag` created
+            - new `github release`  created
+            - new build pushed to `npmjs`
+            
+
+        - TODO: support dev/rc tags
 
 
 ### Available Scripts
@@ -64,13 +91,6 @@ To create a new project from this template:
 Here are the main scripts you can use:
 
 #### `yarn storybook`
-
-Launches Storybook for developing and testing your components in isolation.
-
-> **Note:** To deploy Storybook to GitHub Pages, make sure your repository settings are properly configured:
->
-> 1. Go to `Settings` -> `Actions` -> `General` -> `Workflow permissions`, and enable `Read and write permissions`.
-> 2. Go to `Settings` -> `Pages` -> `Build and deployment`, and set the `Source` to `GitHub Actions`.
 
 #### `yarn test`
 
@@ -84,7 +104,7 @@ Builds the component library using Rollup, outputting both `esm` and `cjs` forma
 
 Prepares and publishes a new version to npm.
 
-> **Note:** Ensure that you have configured your `NPM_PUBLISH_TOKEN` in your repository secrets before running this command in github action.
+
 
 ### Configuration
 
@@ -97,22 +117,6 @@ The provided `tsconfig.json` contains several options related to generated `.d.t
 
 
 
-### Publishing to npm
-
-To publish your component library, follow these steps:
-
-1. **Generate an npm token**:
-    - Go to [npmjs.com](https://npmjs.com), log in, and navigate to `Access Tokens`.
-    - Create a new token of type `Classic`, and choose the `Automation` option.
-
-2. **Test locally**:
-    ```bash
-    npm config set //registry.npmjs.org/:_authToken $NPM_PUBLISH_TOKEN
-    npm publish
-    ```
-
-3. **GitHub Actions setup**:
-    Add the `NPM_PUBLISH_TOKEN` as a secret in your GitHub repository if you want to automate releases via GitHub Actions.
 
 
 ## Known Issues
