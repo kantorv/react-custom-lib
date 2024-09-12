@@ -50,6 +50,8 @@ A boilerplate for developing standalone React components with Storybook and publ
     2. Go to `Repository Settings` -> `Pages` -> `Build and deployment`, and set the `Source` to `GitHub Actions`.
 
 -  **PR Labels**
+    1. Go to: https://github.com/`username`/`repository`/labels
+    2. Add next labels: `patch`,`minor`,`major`
     
 
 ### Installation
@@ -101,22 +103,21 @@ TODO: add color theme support
 
 ### Available Scripts
 
-Here are the main scripts you can use:
 
 #### `yarn storybook`
 
+
 #### `yarn test`
 
-Runs the test suite using `react-scripts`.
+Runs the tests using `react-scripts`.
 
 #### `yarn build`
 
-Builds the component library using Rollup, outputting both `esm` and `cjs` formats.
+Shortcut for `rollup -c`
 
 #### `yarn release`
 
-Prepares and publishes a new version to npm.
-
+Shortcut for `release-it`
 
 
 ### Configuration
