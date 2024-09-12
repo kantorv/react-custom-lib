@@ -84,15 +84,17 @@ TODO: add color theme support
     - `gitflow`:
         - Push to `feature/*`, `hotfix/*`
             - triggers `.github/workflows/tests.yml`
-        - Make PR to `default`
+        - Make PR to `development`
             - Set label: `patch`,`minor`,`major`  (necessary for calculating next version)
-            - triggers `.github/workflows/semver-chech.yml` (checks if label above was set)
+            - triggers `.github/workflows/semver-check.yml` when saved (checks if label above was set)
                
         - When `merged`:
-            - new `tag` created
-            - new `github release`  created
-            - new build pushed to `npmjs`
-            
+            - triggers `.github/workflows/release.yml`
+                - new `tag` created
+                - new `github release`  created
+                - new build pushed to `npmjs`
+                - new `commit` pushed to `development` (⚠️ fails on protected branches )
+                
 
         - TODO: support dev/rc tags
 
