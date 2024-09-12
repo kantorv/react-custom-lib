@@ -1,6 +1,6 @@
 {
   "name": "react-external-lib-boilerplate",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "private": false,
   "repository": "ssh+git@github.com:kantorv/react-external-lib.git",
   "author": "Valentin Kantor",
