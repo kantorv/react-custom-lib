@@ -4,15 +4,15 @@ A boilerplate for developing standalone React components with Storybook and publ
 
 ## Features
 
-- **Rollup**: Build  `esm` and/or`cjs` formats, with optional `.d.ts`.
-- **Release-it**: release-it integration for github releases, and npmjs publishing
-- **Storybook**: For component development, testing, and presentation.
+- **Rollup**: Provides build with `esm`,`cjs`,`.d.ts`.
+- **Release-it**: Github releases, npmjs publishing
+- **Storybook**: Local development , deployment to Github Pages (optionally).
 
 
 ## Out the box support:
 - **TypeScript**: Pre-configured for seamless integration.
 - **Material-UI**: Compatible with MUI v5/v6.
-- **SDLC**: 
+- **SDLC**: There is a set of github actions, aims to implement `gitflow` model
 
 ## Getting Started
 
@@ -70,18 +70,31 @@ To create a new project from this template:
     # yarn release --ci  --increment=patch
     ```
 
+### Material UI
+For creating custom MUI components, just install the needed dependencies
+```bash
+$ yarn add @mui/material @emotion/react @emotion/styled @mui/icons-material @fontsource/roboto
+```
+TODO: add color theme support
+
+
 ### Development
 
 - **SDLC**: 
     - `gitflow`:
         - Push to `feature/*`, `hotfix/*`
-        - Make PR to `default`
-        - Set PR label: `patch`,`minor`,`major`
+            - triggers `.github/workflows/tests.yml`
+        - Make PR to `development`
+            - Set label: `patch`,`minor`,`major`  (necessary for calculating next version)
+            - triggers `.github/workflows/semver-check.yml` when saved (checks if label above was set)
+               
         - When `merged`:
-            - new `tag` created
-            - new `github release`  created
-            - new build pushed to `npmjs`
-            
+            - triggers `.github/workflows/release.yml`
+                - new `tag` created
+                - new `github release`  created
+                - new build pushed to `npmjs`
+                - new `commit` pushed to `development` (⚠️ fails on protected branches )
+                
 
         - TODO: support dev/rc tags
 
