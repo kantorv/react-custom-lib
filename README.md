@@ -50,6 +50,8 @@ A boilerplate for developing standalone React components with Storybook and publ
     2. Go to `Repository Settings` -> `Pages` -> `Build and deployment`, and set the `Source` to `GitHub Actions`.
 
 -  **PR Labels**
+    - Create next labels: `patch` `minor` `major`
+    - When creating PR select release type, it will update version as requested (`patch` is default if not selected) 
     
 
 ### Installation
@@ -71,19 +73,32 @@ To create a new project from this template:
     ```
 
 ### Material UI
-For creating custom MUI components, just install the needed dependencies
+For creating custom MUI components, install the needed dependencies
 ```bash
 $ yarn add @mui/material @emotion/react @emotion/styled @mui/icons-material @fontsource/roboto
 ```
-TODO: add color theme support
+
+Storybook MUI setup (typescript, theme swithcing, etc):
+- [Integrate Material UI with Storybook](https://storybook.js.org/recipes/@mui/material)
 
 
 ### Development
+-  **NO SDLC/GITHUB ACTIONS**
+    - don't create `gitflow` branches like  `feature/*`, `hotfix/*`, `release/*` , so no actions would be triggered
+    - `yarn build`
+    - release-it update:
+        - `yarn release` (for non-interactive: `yarn release --ci  --increment=patch`)
+    - manual update:
+        - `yarn version --patch`
+        - `yarn publish`
 
+        
 - **SDLC**: 
     - `gitflow`:
         - Push to `feature/*`, `hotfix/*`
             - triggers `.github/workflows/tests.yml`
+            - TODO: create prerelease if there is an open PR from this branch (so the prerelease can be installed via npm, may be helpful for integration tests/qa).
+
         - Make PR to `development`
             - Set label: `patch`,`minor`,`major`  (necessary for calculating next version)
             - triggers `.github/workflows/semver-check.yml` when saved (checks if label above was set)
